@@ -16,8 +16,6 @@ function normalizeColor(hexCode) {
 }), {});
 
 //Essential functionality of WebGl
-//t = width
-//n = height
 class MiniGl {
   constructor(canvas, width, height, debug = false) {
       const _miniGl = this,
@@ -302,9 +300,9 @@ class Gradient {
 
           }
           if (0 !== this.last && this.isStatic) return this.minigl.render(), void this.disconnect();
-          (/*this.isIntersecting && */this.conf.playing || this.isMouseDown) && requestAnimationFrame(this.animate)
+          (this.conf.playing || this.isMouseDown) && requestAnimationFrame(this.animate)
       }), e(this, "addIsLoadedClass", () => {
-          /*this.isIntersecting && */!this.isLoadedClass && (this.isLoadedClass = !0, this.el.classList.add("isLoaded"), setTimeout(() => {
+          !this.isLoadedClass && (this.isLoadedClass = !0, this.el.classList.add("isLoaded"), setTimeout(() => {
               this.el.parentElement.classList.add("isLoaded")
           }, 3e3))
       }), e(this, "pause", () => {
@@ -338,15 +336,6 @@ class Gradient {
         requestAnimationFrame(() => {
             this.el && (this.computedCanvasStyle = getComputedStyle(this.el), this.waitForCssVars())
         })
-        /*
-        this.scrollObserver = await s.create(.1, !1),
-        this.scrollObserver.observe(this.el),
-        this.scrollObserver.onSeparate(() => {
-            window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
-        }), 
-        this.scrollObserver.onIntersect(() => {
-            window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
-        })*/
 
       )
   }
@@ -503,20 +492,5 @@ class Gradient {
 }
 
 
-
-
-/*
-*Finally initializing the Gradient class, assigning a canvas to it and calling Gradient.connect() which initializes everything,
-* Use Gradient.pause() and Gradient.play() for controls.
-*
-* Here are some default property values you can change anytime:
-* Amplitude:    Gradient.amp = 0
-* Colors:       Gradient.sectionColors (if you change colors, use normalizeColor(#hexValue)) before you assign it.
-*
-*
-* Useful functions
-* Gradient.toggleColor(index)
-* Gradient.updateFrequency(freq)
-*/
 
 export { Gradient }
